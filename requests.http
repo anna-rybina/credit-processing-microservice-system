@@ -1,0 +1,14 @@
+### Отправить заявку на кредит
+POST http://localhost:8080/api/applications
+Content-Type: application/json
+
+{
+  "amount": 1000000,
+  "termMonths": 12,
+  "monthlyIncome": 150000,
+  "currentCreditLoad": 20000,
+  "creditRating": 750
+}
+
+### Проверить статус заявки (ID = 1)
+GET http://localhost:8080/api/applications/1/status

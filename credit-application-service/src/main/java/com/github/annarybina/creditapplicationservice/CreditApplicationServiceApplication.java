@@ -1,13 +1,13 @@
-package com.github.annarybina.credit_decision_service;
+package com.github.annarybina.creditapplicationservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CreditDecisionServiceApplication {
+public class CreditApplicationServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CreditDecisionServiceApplication.class, args);
+		SpringApplication.run(CreditApplicationServiceApplication.class, args);
 	}
 
 }

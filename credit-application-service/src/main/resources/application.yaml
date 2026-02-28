@@ -1,3 +1,55 @@
 spring:
   application:
     name: credit-application-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/credit_db
+    username: user
+    password: password
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+
+  kafka:
+    bootstrap-servers: localhost:29092
+    producer:
+      bootstrap-servers: localhost:29092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      bootstrap-servers: localhost:29092
+      group-id: credit-application-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    listener:
+      simple:
+        missing-queues-fatal: false  # не падать, если очереди нет
+        retry:
+          enabled: true
+          max-attempts: 3
+
+server:
+  port: 8080
+
+credit:
+  kafka:
+    topic: "credit-applications"
+  rabbitmq:
+    queue: "credit-decisions"
+    exchange: "credit-exchange"
+    routing-key: "decision.key"

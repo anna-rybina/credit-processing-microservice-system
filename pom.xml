@@ -7,11 +7,31 @@
     <groupId>com.github.annarybina</groupId>
     <artifactId>credit-processing-microservice-system</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Управление версиями зависимостей -->
+        <lombok.version>1.18.36</lombok.version>
     </properties>
 
+    <!-- Управление версиями для всех дочерних модулей -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <modules>
+        <module>credit-application-service</module>
+        <module>credit-decision-service</module>
+    </modules>
 </project>

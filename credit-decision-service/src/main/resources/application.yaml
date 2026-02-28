@@ -1,3 +1,31 @@
 spring:
   application:
     name: credit-decision-service
+
+  kafka:
+    bootstrap-servers: localhost:29092
+    consumer:
+      bootstrap-servers: localhost:29092
+      group-id: credit-decision-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+        spring.json.value.default.type: "com.github.annarybina.creditdecisionservice.dto.CreditApplicationEvent"
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+server:
+  port: 8081
+
+credit:
+  kafka:
+    topic: "credit-applications"
+  rabbitmq:
+    queue: "credit-decisions"
+    exchange: "credit-exchange"
+    routing-key: "decision.key"
